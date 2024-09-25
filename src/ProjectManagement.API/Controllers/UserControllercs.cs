@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjectManagement.Application.UseCases.Interface;
 
 namespace ProjectManagement.API.Controllers;
 
@@ -7,13 +8,22 @@ namespace ProjectManagement.API.Controllers;
 [Produces("application/json")]
 public class UserControllercs : ControllerBase
 {
+    private readonly IGetUserUseCase _userUseCase;
+    public UserControllercs( IGetUserUseCase userUseCase) 
+        => _userUseCase = userUseCase;
+
+
+    /// <summary>
+    /// Esse método retorna um lista com todos os usuários
+    /// </summary>
+    /// <returns>Uma lista dos usuários</returns>
+    /// <response code="200">Retorna os usuários</response>
     [HttpGet()]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> GetByIdAsync(Guid userid)
+    public async Task<IActionResult> GetAllUserAsync()
     {
-        
-        return Ok();
+        var result = await _userUseCase.ExecuteAsync();
+        return Ok(result);
     }
 
 }

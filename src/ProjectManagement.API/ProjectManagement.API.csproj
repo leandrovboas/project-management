@@ -8,7 +8,8 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
     <InvariantGlobalization>true</InvariantGlobalization>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>C:\source\github\project-management\src\ProjectManagement.API\obj\Debug\net8.0\ProjectManagement.API.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
