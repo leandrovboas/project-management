@@ -7,4 +7,6 @@ public abstract class EntityBase
     }
 
     public Guid Id { get; private set; }
+    public DateTime Created_At { get;  set; }
+    public DateTime Updated_At { get; set; }
 }
