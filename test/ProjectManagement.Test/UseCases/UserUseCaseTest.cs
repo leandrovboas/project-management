@@ -1,13 +1,12 @@
-﻿using AutoBogus;
-using AutoMapper;
+﻿using AutoMapper;
 using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
 using Moq;
 using ProjectManagement.Application.AuteMapper;
 using ProjectManagement.Application.DTOs;
-using ProjectManagement.Application.UseCases;
+using ProjectManagement.Application.UseCases.User;
 using ProjectManagement.Core.Entities;
 using ProjectManagement.Core.Repositories;
+using ProjectManagement.Core.TableModels;
 using ProjectManagement.Test.Builders;
 
 namespace ProjectManagement.Test.Repository
@@ -35,11 +34,12 @@ namespace ProjectManagement.Test.Repository
                 new UserBuilders().BuildObject(),
                 new UserBuilders().BuildObject()
             };
+            var userModel = _mapper.Map<List<UserModel>>(users);
 
             var userReposiitory = new Mock<IUserRepository>();
             userReposiitory
                 .Setup(x => x.GetAllUserAsync())
-                .ReturnsAsync(users);
+                .ReturnsAsync(userModel);
 
 
             var getUserUseCase = new GetUserUseCase(userReposiitory.Object, _mapper);
@@ -57,10 +57,12 @@ namespace ProjectManagement.Test.Repository
                 user
             };
 
+            var userModel = _mapper.Map<List<UserModel>>(users);
+
             var userReposiitory = new Mock<IUserRepository>();
             userReposiitory
                 .Setup(x => x.GetAllUserAsync())
-                .ReturnsAsync(users);
+                .ReturnsAsync(userModel);
 
             var expected = _mapper.Map<UserResponse>(user);
 

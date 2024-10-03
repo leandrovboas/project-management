@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ProjectManagement.Application.UseCases;
-using ProjectManagement.Application.UseCases.Interface;
+using ProjectManagement.Application.UseCases.User;
 
 namespace ProjectManagement.API.Registers;
 

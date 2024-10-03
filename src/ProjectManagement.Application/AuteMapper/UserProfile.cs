@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ProjectManagement.Application.DTOs;
 using ProjectManagement.Core.Entities;
+using ProjectManagement.Core.TableModels;
 
 namespace ProjectManagement.Application.AuteMapper
 {
@@ -8,6 +9,8 @@ namespace ProjectManagement.Application.AuteMapper
     {
         public UserProfile()
         {
+            CreateMap<User, UserModel>();
+            CreateMap<UserModel, UserResponse>();
             CreateMap<User, UserResponse>();
         }
     }

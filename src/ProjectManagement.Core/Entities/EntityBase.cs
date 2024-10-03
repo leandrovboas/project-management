@@ -4,6 +4,7 @@ public abstract class EntityBase
     public EntityBase()
     {
         Id = Guid.NewGuid();
+        Created_At = DateTime.UtcNow;
     }
 
     public Guid Id { get; private set; }

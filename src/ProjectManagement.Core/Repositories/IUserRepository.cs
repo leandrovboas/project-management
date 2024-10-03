@@ -1,8 +1,8 @@
-﻿using ProjectManagement.Core.Entities;
+﻿using ProjectManagement.Core.TableModels;
 
 namespace ProjectManagement.Core.Repositories;
 
 public interface IUserRepository
 {
-    Task<List<User>> GetAllUserAsync();
+    Task<List<UserModel>> GetAllUserAsync();
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ProjectManagement.Infra.Configurations;
@@ -11,9 +12,11 @@ using ProjectManagement.Infra.Configurations;
 namespace ProjectManagement.Infra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241003162056_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,56 @@ namespace ProjectManagement.Infra.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("ProjectManagement.Core.Entities.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("AccessType")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("Created_At")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Updated_At")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("3cc8cf75-1a5e-4329-b280-1154c98f0431"),
+                            AccessType = 1,
+                            Created_At = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Leandro Vilas Boas",
+                            Updated_At = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("c4cfc2c3-c8e2-409c-98d9-f7f53a8ae5d9"),
+                            AccessType = 1,
+                            Created_At = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Thais Vilas Boas",
+                            Updated_At = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("39f989a8-2f02-4278-b2ab-ee9a81bea0ed"),
+                            AccessType = 1,
+                            Created_At = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Mariana Vilas Boas",
+                            Updated_At = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
 
             modelBuilder.Entity("ProjectManagement.Core.TableModels.ProjectModel", b =>
                 {
@@ -71,32 +124,6 @@ namespace ProjectManagement.Infra.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserModel");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("e6cb6bab-752f-43b1-aa9a-404a042484f0"),
-                            AccessType = 1,
-                            Created_At = new DateTime(2024, 10, 3, 16, 34, 9, 834, DateTimeKind.Utc).AddTicks(7018),
-                            Name = "Leandro Vilas Boas",
-                            Updated_At = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("b24c8031-7e17-4c4a-bc26-cf07b7ec1db4"),
-                            AccessType = 2,
-                            Created_At = new DateTime(2024, 10, 3, 16, 34, 9, 834, DateTimeKind.Utc).AddTicks(7021),
-                            Name = "Thais Vilas Boas",
-                            Updated_At = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("f34d886a-b360-46d5-99b4-f0d9a6dbe282"),
-                            AccessType = 2,
-                            Created_At = new DateTime(2024, 10, 3, 16, 34, 9, 834, DateTimeKind.Utc).AddTicks(7023),
-                            Name = "Mariana Vilas Boas",
-                            Updated_At = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("ProjectManagement.Core.TableModels.WorkItemsModel", b =>

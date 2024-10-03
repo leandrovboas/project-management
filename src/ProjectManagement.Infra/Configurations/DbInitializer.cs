@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjectManagement.Core.Entities;
 using ProjectManagement.Core.Enums;
+using ProjectManagement.Core.TableModels;
 
 namespace ProjectManagement.Infra.Configurations;
 
@@ -15,10 +15,25 @@ public class DbInitializer
 
     public void Seed()
     {
-        modelBuilder.Entity<User>().HasData(
-               new User() { Name = "Leandro Vilas Boas", AccessType = AccessType.Manager },
-               new User() { Name = "Thais Vilas Boas", AccessType = AccessType.Manager },
-               new User() { Name = "Mariana Vilas Boas", AccessType = AccessType.Manager }
+        modelBuilder.Entity<UserModel>().HasData(
+               new UserModel() { 
+                   Name = "Leandro Vilas Boas", 
+                   AccessType = AccessType.Manager, 
+                   Id = Guid.NewGuid(), 
+                   Created_At = DateTime.UtcNow
+               },
+               new UserModel() { 
+                   Name = "Thais Vilas Boas", 
+                   AccessType = AccessType.Employee ,
+                   Id = Guid.NewGuid(),
+                   Created_At = DateTime.UtcNow
+               },
+               new UserModel() { 
+                   Name = "Mariana Vilas Boas",
+                   AccessType = AccessType.Employee,
+                   Id = Guid.NewGuid(),
+                   Created_At = DateTime.UtcNow
+               }
         );
     }
 }

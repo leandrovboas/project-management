@@ -1,7 +1,7 @@
 ﻿using ProjectManagement.Application.DTOs;
 using ProjectManagement.Core.Entities;
 
-namespace ProjectManagement.Application.UseCases.Interface;
+namespace ProjectManagement.Application.UseCases.User;
 
 public interface IGetUserUseCase
 {

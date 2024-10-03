@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using ProjectManagement.Application.DTOs;
-using ProjectManagement.Application.UseCases.Interface;
 using ProjectManagement.Core.Repositories;
 
-namespace ProjectManagement.Application.UseCases;
+namespace ProjectManagement.Application.UseCases.User;
 
 public class GetUserUseCase : IGetUserUseCase
 {
